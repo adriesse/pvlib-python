@@ -223,6 +223,8 @@ Incident angle modifiers
    iam.martin_ruiz_diffuse
    iam.sapm
    iam.interp
+   iam.marion_diffuse
+   iam.marion_integrate
 
 PV temperature models
 ---------------------
@@ -232,6 +234,7 @@ PV temperature models
 
    temperature.sapm_cell
    temperature.sapm_module
+   temperature.sapm_cell_from_module
    temperature.pvsyst_cell
    temperature.faiman
 
@@ -262,10 +265,21 @@ Low-level functions for solving the single diode equation.
    singlediode.bishop88_v_from_i
    singlediode.bishop88_mpp
 
-SAPM model
-----------
+Inverter models (DC to AC conversion)
+-------------------------------------
 
-Functions relevant for the SAPM model.
+.. autosummary::
+   :toctree: generated/
+
+   inverter.sandia
+   inverter.adr
+   inverter.pvwatts
+
+PV System Models
+----------------
+
+Sandia array performance model (SAPM)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: generated/
@@ -274,32 +288,32 @@ Functions relevant for the SAPM model.
    pvsystem.sapm_effective_irradiance
    pvsystem.sapm_spectral_loss
    pvsystem.sapm_aoi_loss
-   pvsystem.snlinverter
-   pvsystem.adrinverter
+   inverter.sandia
    temperature.sapm_cell
 
 Pvsyst model
--------------
-
-Functions relevant for the Pvsyst model.
+^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: generated/
 
    temperature.pvsyst_cell
+   pvsystem.calcparams_pvsyst
+   pvsystem.singlediode
 
 PVWatts model
--------------
+^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: generated/
 
    pvsystem.pvwatts_dc
-   pvsystem.pvwatts_ac
+   inverter.pvwatts
    pvsystem.pvwatts_losses
 
-Functions for fitting PV models
--------------------------------
+Functions for fitting diode models
+----------------------------------
+
 .. autosummary::
    :toctree: generated/
 
@@ -314,8 +328,25 @@ Other
    :toctree: generated/
 
    pvsystem.retrieve_sam
-   pvsystem.systemdef
    pvsystem.scale_voltage_current_power
+
+
+Effects on PV System Output
+===========================
+
+.. autosummary::
+   :toctree: generated/
+
+   snow.coverage_nrel
+   snow.fully_covered_nrel
+   snow.dc_loss_nrel
+
+.. autosummary::
+   :toctree: generated/
+
+   soiling.hsu
+   soiling.kimber
+
 
 
 Tracking
@@ -373,6 +404,7 @@ relevant to solar energy modeling.
    iotools.read_psm3
    iotools.parse_psm3
    iotools.get_pvgis_tmy
+   iotools.read_pvgis_tmy
 
 A :py:class:`~pvlib.location.Location` object may be created from metadata
 in some files.
@@ -513,6 +545,7 @@ ModelChain model definitions.
    modelchain.ModelChain.no_spectral_loss
    modelchain.ModelChain.sapm_temp
    modelchain.ModelChain.pvsyst_temp
+   modelchain.ModelChain.faiman_temp
    modelchain.ModelChain.pvwatts_losses
    modelchain.ModelChain.no_extra_losses
 

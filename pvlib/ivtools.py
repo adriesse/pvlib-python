@@ -92,7 +92,7 @@ def fit_sdm_cec_sam(celltype, v_mp, i_mp, v_oc, i_sc, alpha_sc, beta_voc,
         raise ImportError("Requires NREL's PySAM package at "
                           "https://pypi.org/project/NREL-PySAM/.")
 
-    datadict = {'tech_model': '6parsolve', 'financial_model': 'none',
+    datadict = {'tech_model': '6parsolve', 'financial_model': None,
                 'celltype': celltype, 'Vmp': v_mp,
                 'Imp': i_mp, 'Voc': v_oc, 'Isc': i_sc, 'alpha_isc': alpha_sc,
                 'beta_voc': beta_voc, 'gamma_pmp': gamma_pmp,
@@ -264,8 +264,8 @@ def fit_sdm_desoto(v_mp, i_mp, v_oc, i_sc, alpha_sc, beta_voc,
                    cells_in_series, EgRef=1.121, dEgdT=-0.0002677,
                    temp_ref=25, irrad_ref=1000, root_kwargs={}):
     """
-    Calculates the parameters for the De Soto single diode model using the
-    procedure described in [1]_. This procedure has the advantage of
+    Calculates the parameters for the De Soto single diode model.
+    This procedure (described in [1]_) has the advantage of
     using common specifications given by manufacturers in the
     datasheets of PV modules.
 

@@ -38,7 +38,8 @@ VARIABLE_MAP = {
 
 
 def read_surfrad(filename, map_variables=True):
-    """Read in a daily NOAA SURFRAD[1]_ file.
+    """Read in a daily NOAA SURFRAD file.  The SURFRAD network is
+    described in [1]_.
 
     Parameters
     ----------
@@ -122,12 +123,12 @@ def read_surfrad(filename, map_variables=True):
     .. [2] NOAA SURFRAD Data Archive
        `SURFRAD Archive <ftp://aftp.cmdl.noaa.gov/data/radiation/surfrad/>`_
     """
-    if filename.startswith('ftp'):
+    if str(filename).startswith('ftp'):
         req = Request(filename)
         response = urlopen(req)
         file_buffer = io.StringIO(response.read().decode(errors='ignore'))
     else:
-        file_buffer = open(filename, 'r')
+        file_buffer = open(str(filename), 'r')
 
     # Read and parse the first two lines to build the metadata dict.
     station = file_buffer.readline()
